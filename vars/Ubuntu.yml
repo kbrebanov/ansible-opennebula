@@ -1,0 +1,9 @@
+---
+# vars file for opennebula (Ubuntu specific)
+
+opennebula_frontend_packages:
+  - opennebula
+  - opennebula-sunstone
+opennebula_node_packages:
+  - opennebula-node
+  - bridge-utils

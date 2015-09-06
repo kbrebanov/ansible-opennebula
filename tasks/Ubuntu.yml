@@ -1,0 +1,30 @@
+---
+# tasks file for opennebula (Ubuntu specific)
+
+- name: Download OpenNebula APT repository GPG key
+  apt_key: >
+    url=http://downloads.opennebula.org/repo/Ubuntu/repo.key
+    state=present
+  tags: opennebula
+
+- name: Create OpenNebula 4.12 APT repository
+  apt_repository: >
+    repo='deb http://downloads.opennebula.org/repo/{{ opennebula_version }}/Ubuntu/14.04/ stable opennebula'
+    state=present
+  tags: opennebula
+
+- name: Install OpenNebula frontend packages
+  apt: name={{ item }} state=present update_cache=yes
+  with_items: opennebula_frontend_packages
+  when: opennebula_frontend
+  tags:
+    - opennebula
+    - frontend
+
+- name: Install OpenNebula node packages
+  apt: name={{ item }} state=present update_cache=yes
+  with_items: opennebula_node_packages
+  when: opennebula_node
+  tags:
+    - opennebula
+    - node

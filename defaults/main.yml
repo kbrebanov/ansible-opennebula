@@ -1,2 +1,6 @@
 ---
 # defaults file for opennebula
+
+opennebula_version: 4.12
+opennebula_frontend: False
+opennebula_node: True
